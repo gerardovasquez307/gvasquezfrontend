@@ -1,5 +1,5 @@
 #main{ 
-    background: url('/assets/2325front.jpg') no-repeat center center ;
+    background: url('src/assets/2325front.jpg') no-repeat center center ;
     background-size:cover;
     height:100vh;
 }
