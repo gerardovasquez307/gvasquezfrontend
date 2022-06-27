@@ -5,10 +5,10 @@ import { PhotosComponent } from './photos/photos.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home-component', component: HomeComponent },
-  { path: 'photos-component', component: PhotosComponent },
-  { path: 'register-component', component: RegisterComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'photos', component: PhotosComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({
