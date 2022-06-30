@@ -12,23 +12,32 @@ export class UserService {
   url : string = "https://gvasquezestatebackend.herokuapp.com/user";
 
   constructor(private http: HttpClient) { }
-  test = {
-    email: "hello",
-    password: "password"
-  }
 
-  async login(ngForm : NgForm){
-    console.log(ngForm.value);
-    const result = await UserSchema.validate(ngForm.value);
-    console.log(result.error);
+  async login(form : NgForm){
+    const result = await UserSchema.validate(form.value);
 
     if(result.error != null){
       console.log(result.error);
     }
     else{
-      this.http.post(this.url + "/validate",ngForm.value).subscribe(data =>{
+      this.http.post(this.url + "/validate",form.value).subscribe(data =>{
         console.log(data);
       });
     }
+  }
+
+  async register(user : Object){
+    const result = await UserSchema.validate(user);
+
+    if(result.error != null){
+      console.log(result.error);
+      return false;
+    }
+    else{
+      this.http.post(this.url + "/register",user).subscribe(data =>{
+      });
+      return true;
+    }
+
   }
 }

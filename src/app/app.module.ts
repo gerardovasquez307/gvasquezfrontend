@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { ApplicationComponent } from './application/application.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     PhotosComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ApplicationComponent
   ],
   imports: [
     BrowserModule,

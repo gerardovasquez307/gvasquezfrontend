@@ -13,11 +13,11 @@ import * as JoiValidation from 'joi';
 });
 
 
-const FindPersonSchema = JoiValidation.object({
+var FindPersonSchema = JoiValidation.object({
 SSN: JoiValidation.number().required()
 });
 
-const UpdatePersonSchema = JoiValidation.object({
+var UpdatePersonSchema = JoiValidation.object({
     SSN: JoiValidation.number().min(111111111).max(999999999).required(),
     Name: JoiValidation.string(),
     Age: JoiValidation.number().min(1).max(122),
@@ -29,4 +29,4 @@ const UpdatePersonSchema = JoiValidation.object({
     Relationship:JoiValidation.number()
 });
 
-module.exports = {PostPersonSchema, FindPersonSchema, UpdatePersonSchema};
+export var PersonSchemas = {PostPersonSchema, FindPersonSchema, UpdatePersonSchema};
