@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import * as JoiValidation from 'Joi';
 import {UserSchema} from '../models/user.model';
 import { NgForm } from '@angular/forms';
 
