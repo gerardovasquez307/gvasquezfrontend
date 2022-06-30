@@ -1,4 +1,4 @@
-import * as JoiValidation from 'Joi';
+import * as JoiValidation from 'joi';
 
  var PostPersonSchema = JoiValidation.object({
     SSN: JoiValidation.number().min(111111111).max(999999999).required(), 

@@ -1,4 +1,4 @@
-import * as JoiValidation from 'Joi';
+import * as JoiValidation from 'joi';
 
 export var UserSchema = JoiValidation.object({
 Email:JoiValidation.string().required(),
