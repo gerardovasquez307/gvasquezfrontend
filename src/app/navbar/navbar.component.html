@@ -17,12 +17,12 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-          <form id="loginForm" class="d-flex">
+          <form id="loginForm" class="d-flex" (ngSubmit)="submit(loginForm)" #loginForm="ngForm" novalidate>
             <li class="nav-item px-2">
-                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" ngModel>
             </li>
             <li class="nav-item px-2">  
-              <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+              <input type="password" name="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" ngModel>
             </li>
             <li class="nav-item px-2">
               <button class="btn btn-outline-success" type="submit">Login</button>
