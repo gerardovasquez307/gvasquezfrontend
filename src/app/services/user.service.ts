@@ -17,12 +17,12 @@ export class UserService {
     const result = await UserSchema.validate(form.value);
 
     if(result.error != null){
-      console.log(result.error);
+      return(result.error);
     }
     else{
       this.http.post(this.url + "/validate",form.value).subscribe(data =>{
-        console.log(data);
       });
+      return undefined;
     }
   }
 
@@ -30,13 +30,12 @@ export class UserService {
     const result = await UserSchema.validate(user);
 
     if(result.error != null){
-      console.log(result.error);
-      return false;
+      return result.error;
     }
     else{
       this.http.post(this.url + "/register",user).subscribe(data =>{
       });
-      return true;
+      return undefined;
     }
 
   }

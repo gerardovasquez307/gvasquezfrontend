@@ -5,10 +5,10 @@ import * as JoiValidation from 'joi';
     Name: JoiValidation.string().required(),
     Age: JoiValidation.number().min(1).max(122).required(),
     IsMale:JoiValidation.boolean().required(),
-    CurrentAddress:JoiValidation.string().min(3).required(),
+    Address:JoiValidation.string().min(3).required(),
     Phone:JoiValidation.number().min(1111111111).max(9999999999).required(),
     Email:JoiValidation.string().required(),
-    RelatedTo:JoiValidation.number().required(),
+    RelatedTo:JoiValidation.string().required(),
     Relationship:JoiValidation.number().required()
 });
 
@@ -22,10 +22,10 @@ var UpdatePersonSchema = JoiValidation.object({
     Name: JoiValidation.string(),
     Age: JoiValidation.number().min(1).max(122),
     IsMale:JoiValidation.boolean(),
-    CurrentAddress:JoiValidation.string().min(3),
+    Address:JoiValidation.string().min(3),
     Phone:JoiValidation.number().min(1111111111).max(9999999999),
     Email:JoiValidation.string(),
-    RelatedTo:JoiValidation.number(),
+    RelatedTo:JoiValidation.string(),
     Relationship:JoiValidation.number()
 });
 

@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PersonSchemas } from '../models/person.model';
@@ -16,13 +17,12 @@ export class PersonService {
     const result = await PersonSchemas.PostPersonSchema.validate(form.value);
 
     if(result.error != null){
-      console.log(result.error);
-      return false;
+      return (result.error);
     }
     else{
-      this.http.post(this.url + "/register",form.value).subscribe(data =>{
+      this.http.post(this.url,form.value).subscribe(data =>{
       });
-      return true;
+      return null;
     }
   }
 }
