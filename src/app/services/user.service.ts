@@ -21,6 +21,7 @@ export class UserService {
     }
     else{
       this.http.post(this.url + "/validate",form.value).subscribe(data =>{
+        console.log(data);
       });
       return undefined;
     }
