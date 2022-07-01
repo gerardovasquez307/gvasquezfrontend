@@ -34,6 +34,9 @@ export class UserService {
       return result.error;
     }
     else{
+      let exists = await this.http.post(this.url + "/findUser",user).subscribe(data =>{});
+
+
       this.http.post(this.url + "/register",user).subscribe(data =>{
       });
       return undefined;
