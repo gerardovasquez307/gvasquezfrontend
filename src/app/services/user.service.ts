@@ -20,9 +20,7 @@ export class UserService {
       return(result.error);
     }
     else{
-      this.http.post(this.url + "/validate",form.value).subscribe(data =>{
-        console.log(data);
-      });
+      this.http.post(this.url + "/validate",form.value).subscribe({});
       return undefined;
     }
   }
@@ -36,9 +34,7 @@ export class UserService {
     else{
       let exists = await this.http.post(this.url + "/findUser",user).subscribe(data =>{});
 
-
-      this.http.post(this.url + "/register",user).subscribe(data =>{
-      });
+      this.http.post(this.url + "/register",user).subscribe(data =>{});
       return undefined;
     }
 

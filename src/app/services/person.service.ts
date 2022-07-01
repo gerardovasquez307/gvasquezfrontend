@@ -20,8 +20,7 @@ export class PersonService {
       return (result.error);
     }
     else{
-      this.http.post(this.url,form.value).subscribe(data =>{
-      });
+      this.http.post(this.url,form.value).subscribe(data =>{});
       return null;
     }
   }
