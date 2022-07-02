@@ -29,7 +29,7 @@ export class UserService {
     const result = await UserSchema.validate(user);
 
     if(result.error != null){
-      return result.error;
+      return (result.error);
     }
     else{
       let exists = await this.http.post(this.url + "/findUser",user).subscribe(data =>{});

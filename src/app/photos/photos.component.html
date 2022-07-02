@@ -3,58 +3,57 @@
     <div class="row mt-3 text-center">
         <h3>Select which apartment you would like to view photos from</h3>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <input type="radio" value="bsmnt" class="btn-check" name="btnRadio" #bsmntRadio id="btnradio1" autocomplete="off" checked ngModel>
             <label class="btn btn-outline-primary" for="btnradio1">Basement</label>
           
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <input type="radio" value="apt1" class="btn-check" name="btnRadio" #apt1Radio id="btnradio2" autocomplete="off" ngModel>
             <label class="btn btn-outline-primary" for="btnradio2">Apt1 (1st Floor)</label>
           
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <input type="radio" value="apt2" class="btn-check" name="btnRadio" #apt2Radio id="btnradio3" autocomplete="off" ngModel>
             <label class="btn btn-outline-primary" for="btnradio3">Apt2 (2nd Floor)</label>
         </div>
     </div>
 
-        <!-- BEGIN test forms-->
-    <div class="row justify-content-center">
-        <div class="card mx-1 my-2">
-            <img class="card-img-top">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>        
-        <div class="card mx-1 my-2">
-            <img class="card-img-top">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>    
-        <div class="card mx-1 my-2">
-            <img class="card-img-top">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>    
-        <div class="card mx-1 my-2">
-            <img class="card-img-top">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>      
-    </div>
-
-    <!-- BEGIN angular generated forms-->
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <!--if bsmnt apt-->
+    <div *ngIf="bsmntRadio.checked || (!apt1Radio.checked && !apt2Radio.checked)" class="row justify-content-center">
+        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6" *ngFor="let number of numbers1">
+        <!-- BEGIN angular generated forms-->
+            <div class="card mx-1 my-2">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>   
         </div>
-      </div>
+    </div>
+    <!--if 1st apt-->
+    <div *ngIf="apt1Radio.checked" class="row justify-content-center">
+        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6" *ngFor="let number of numbers2">
+        <!-- BEGIN angular generated forms-->
+            <div class="card mx-1 my-2">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>   
+        </div>
+    </div>
+     <!--if 2nd apt-->
+    <div *ngIf="apt2Radio.checked" class="row justify-content-center">
+        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6" *ngFor="let number of numbers3">
+        <!-- BEGIN angular generated forms-->
+            <div class="card mx-1 my-2">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>   
+        </div>
+    </div>
 </div>

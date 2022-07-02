@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { NgForm, NgModel, ValidationErrors } from '@angular/forms';
+import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
+import { boolean, string } from 'joi';
 import { PersonService } from '../services/person.service';
 import { UserService } from '../services/user.service';
+import { ValidationError } from 'joi/lib';
 
 
 @Component({
@@ -14,10 +17,14 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('openModalButton', {read: ElementRef}) openModalButton!: ElementRef;
   @ViewChild('registerForm', {read: ElementRef}) registerForm!: ElementRef;
+  
+  containsErrors : boolean = false;
+  errors : any;
 
-  constructor(private userService: UserService, private personService: PersonService) { }
+  constructor(private userService: UserService, private personService: PersonService) {
+   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
   }
 
   async submit(form : NgForm){
@@ -32,13 +39,12 @@ export class RegisterComponent implements OnInit {
 
       //need to change name, and gender to conform to api
       let name : string = form.value.fName + form.value.lName;
-      let isMale : boolean = true; //default
-      if(form.value.gender == 'Female')isMale = false;
       let address : string  = form.value.Address + form.value.city + form.value.state + form.value.zip;
       
       //set fields we need to send to api
+      if(form.value.gender == 'Female')form.value.IsMale = false;
+      else if (form.value.gender == 'Male')form.value.IsMale = true;
       form.value.Address = address;
-      form.value.IsMale = isMale;
       form.value.Name = name;
       form.value.RelatedTo = "self";
       form.value.Relationship = 1;
@@ -56,25 +62,45 @@ export class RegisterComponent implements OnInit {
       delete form.value.confirmPassword;
       
       console.log(form.value);
+      let email = { "Email" : form.value.Email };
+      let personExists = { "found" : false}; 
+      
+      personExists = await <any>this.personService.findPerson(email);
+
+      if(personExists.found){
+        this.containsErrors = true;
+        this.errors = "User already exists in the system please login";
+        this.scrollToTop();
+        return;
+      }
       let result = await this.personService.register(form);
       if(result != undefined) {
         console.log(result);
+        this.errors = result.message;
+        this.containsErrors = true;
+        this.scrollToTop();
         return;
       }
       let result2 = await this.userService.register(user);
-      if (result2 != undefined){
+      if (result2 != undefined){ 
+        this.errors = result2.message;
+        this.containsErrors = true;
+        this.scrollToTop();
         console.log(result);
         return;
       }
       this.openModalButton.nativeElement.click();
       this.resetModal();
+      this.containsErrors = false;
     }
   }
 
   confirmPassword(form: NgForm){
     if(form.value.Password === form.value.confirmPassword)return true;
     else {
-      console.log("Passwords do not match");
+      this.errors = "The passwords need to match";
+      this.containsErrors = true;
+      this.scrollToTop();
       return false;
     }
   }
@@ -82,4 +108,17 @@ export class RegisterComponent implements OnInit {
   resetModal(){
     this.registerForm.nativeElement.reset();
    }
+
+   scrollToTop() {
+    // window.scroll(0,0);
+ 
+    window.scroll({ 
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+     });
+ 
+     //or document.body.scrollTop = 0;
+     //or document.querySelector('body').scrollTo(0,0)
+ }
 }

@@ -21,7 +21,16 @@ export class PersonService {
     }
     else{
       this.http.post(this.url,form.value).subscribe(data =>{});
-      return null;
+      return undefined;
     }
   }
+
+  findPerson(email : Object){
+    return new Promise( (resolve, reject) =>{
+      this.http.post(this.url + "/findPerson",email).subscribe(data =>{
+       resolve(data); 
+      });
+    });
+  }
+
 }
