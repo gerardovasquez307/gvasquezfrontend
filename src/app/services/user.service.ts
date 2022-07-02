@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, resolveForwardRef } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {UserSchema} from '../models/user.model';
 import { NgForm } from '@angular/forms';
@@ -20,10 +20,13 @@ export class UserService {
       return(result.error);
     }
     else{
-      this.http.post(this.url + "/validate",form.value).subscribe({});
-      return undefined;
-    }
+      return new Promise( (resolve, reject) =>{
+        this.http.post(this.url + "/validate",form.value).subscribe(data => {
+        resolve(data);
+      });      
+    });
   }
+}
 
   async register(user : Object){
     const result = await UserSchema.validate(user);

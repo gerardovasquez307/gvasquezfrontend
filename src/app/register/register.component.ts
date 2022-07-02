@@ -62,12 +62,12 @@ export class RegisterComponent implements OnInit {
       delete form.value.confirmPassword;
       
       console.log(form.value);
-      let email = { "Email" : form.value.Email };
-      let personExists = { "found" : false}; 
+      let email = { "Email" : form.value.Email }; 
       
-      personExists = await <any>this.personService.findPerson(email);
+      let personExists = await <any>this.personService.findPerson(email);
+      JSON.parse(JSON.stringify(personExists));
 
-      if(personExists.found){
+      if(personExists.found == 'true'){
         this.containsErrors = true;
         this.errors = "User already exists in the system please login";
         this.scrollToTop();

@@ -11,6 +11,8 @@ import { UserService } from '../services/user.service';
 })
 export class NavbarComponent implements OnInit {
   name: any;
+  validated: boolean = false;
+  userLoggedIn: string = "error";
 
   constructor(private initialRouter: Router,
     private nextRoute: ActivatedRoute, private userService : UserService
@@ -23,9 +25,19 @@ export class NavbarComponent implements OnInit {
     this.initialRouter.navigate(['/home-component']);
   }
 
-  submit(ngForm : NgForm)
+  async submit(ngForm : NgForm)
   {
-    this.userService.login(ngForm);
+    let result = await <any>this.userService.login(ngForm);
+    JSON.parse(JSON.stringify(result));
+
+    if(result.validated){
+      console.log("validated");
+      this.validated = result.validated;
+      this.userLoggedIn = ngForm.value.Email;
+    }
+    else{
+      console.log("incorrect username/password")
+    }
   }
 
 }

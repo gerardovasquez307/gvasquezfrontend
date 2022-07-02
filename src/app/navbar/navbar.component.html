@@ -15,8 +15,11 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/register" ariaCurrentWhenActive="page">Register</a>
           </li>
+          <li class="nav-item" *ngIf="validated">
+            <a class="nav-link" routerLink="/application" ariaCurrentWhenActive="page">Application</a>
+          </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul *ngIf="!validated" class="navbar-nav">
           <form id="loginForm" class="d-flex" (ngSubmit)="submit(loginForm)" #loginForm="ngForm" novalidate>
             <li class="nav-item px-2">
                 <input type="text" name="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" ngModel>
@@ -28,7 +31,12 @@
               <button class="btn btn-outline-success" type="submit">Login</button>
             </li>
           </form>
-      </ul>
+        </ul>
+        <ul *ngIf="validated" class="navbar-nav">
+          <li class="nav-item px-2">
+            Welcome {{userLoggedIn}}
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
