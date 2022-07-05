@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
     //verify if passwords match
     if (this.confirmPassword(form)){
     
+      //emails will be stored in lowercase
+      form.value.Email = form.value.Email.toLowerCase();
+
       //crete user object to send to endpoint
       let user = {
         Email: form.value.Email,

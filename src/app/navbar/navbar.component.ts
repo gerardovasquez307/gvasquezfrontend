@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
   async submit(ngForm : NgForm)
   {
     this.loading = true;
+    ngForm.value.Email = ngForm.value.Email.toLowerCase();
     let result = await <any>this.userService.login(ngForm);
     JSON.parse(JSON.stringify(result));
 
