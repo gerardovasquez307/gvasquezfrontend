@@ -7,16 +7,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
           <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }">
-            <a class="nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+            <a class="nav-link" routerLink="/home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
           </li>
           <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }">
-            <a class="nav-link" routerLink="/photos" ariaCurrentWhenActive="page">Photos</a>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/photos" ariaCurrentWhenActive="page">Photos</a>
           </li>
           <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }">
-            <a class="nav-link" routerLink="/register" ariaCurrentWhenActive="page">Register</a>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/register" ariaCurrentWhenActive="page">Register</a>
           </li>
           <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }" *ngIf="validated">
-            <a class="nav-link" routerLink="/application" ariaCurrentWhenActive="page">Application</a>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/application" ariaCurrentWhenActive="page">Application</a>
           </li>
         </ul>
         <ul class="navbar-nav px-2" *ngIf="displayLoginError">
