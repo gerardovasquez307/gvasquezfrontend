@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   validated: boolean = false;
   userLoggedIn: string = "error";
   displayLoginError : boolean = false;
+  loading: boolean = false;
 
   constructor(private initialRouter: Router,
     private nextRoute: ActivatedRoute, private userService : UserService
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
 
   async submit(ngForm : NgForm)
   {
+    this.loading = true;
     let result = await <any>this.userService.login(ngForm);
     JSON.parse(JSON.stringify(result));
 
@@ -41,6 +43,7 @@ export class NavbarComponent implements OnInit {
       console.log("incorrect username/password");
       this.displayLoginError = true;
     }
+    this.loading = false;
   }
 
 }

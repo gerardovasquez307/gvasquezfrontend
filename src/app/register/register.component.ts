@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('openModalButton', {read: ElementRef}) openModalButton!: ElementRef;
   @ViewChild('registerForm', {read: ElementRef}) registerForm!: ElementRef;
   
+  loading: boolean = false;
   containsErrors : boolean = false;
   errors : any;
 
@@ -28,6 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async submit(form : NgForm){
+    this.loading = true;
     //verify if passwords match
     if (this.confirmPassword(form)){
     
@@ -71,6 +73,7 @@ export class RegisterComponent implements OnInit {
         this.containsErrors = true;
         this.errors = "User already exists in the system please login";
         this.scrollToTop();
+        this.loading =false;
         return;
       }
       let result = await this.personService.register(form);
@@ -78,6 +81,7 @@ export class RegisterComponent implements OnInit {
         console.log(result);
         this.errors = result.message;
         this.containsErrors = true;
+        this.loading= false;
         this.scrollToTop();
         return;
       }
@@ -87,12 +91,14 @@ export class RegisterComponent implements OnInit {
         this.containsErrors = true;
         this.scrollToTop();
         console.log(result);
+        this.loading = false;
         return;
       }
       this.openModalButton.nativeElement.click();
       this.resetModal();
       this.containsErrors = false;
     }
+    this.loading = false;
   }
 
   confirmPassword(form: NgForm){

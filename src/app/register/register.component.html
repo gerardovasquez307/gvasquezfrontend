@@ -70,7 +70,10 @@
         <label for="confirmPassword" class="form-label">Confirm Password</label>
         <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" required ngModel>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">
+        <span [ngClass]="{'spinner-border spinner-border-sm' : loading}" role="status" aria-hidden="true"></span>
+        Register
+    </button>
     <input type="hidden" name="Name" id="Name" ngModel>
     <input type="hidden" name="IsMale" id="IsMale" ngModel>
     <input type="hidden" name="RelatedTo" id="RelatedTo" ngModel>
