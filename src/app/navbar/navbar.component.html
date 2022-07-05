@@ -6,18 +6,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
+          <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }">
             <a class="nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }">
             <a class="nav-link" routerLink="/photos" ariaCurrentWhenActive="page">Photos</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }">
             <a class="nav-link" routerLink="/register" ariaCurrentWhenActive="page">Register</a>
           </li>
-          <li class="nav-item" *ngIf="validated">
+          <li class="nav-item" [ngClass]="{'col-3': validated , 'col-4' : !validated }" *ngIf="validated">
             <a class="nav-link" routerLink="/application" ariaCurrentWhenActive="page">Application</a>
           </li>
+        </ul>
+        <ul class="navbar-nav" *ngIf="displayLoginError">
+          <li class="nav-item col" style="color : red">
+            <div>Incorrect Username/password</div>
+          </li> 
         </ul>
         <ul *ngIf="!validated" class="navbar-nav">
           <form id="loginForm" class="d-flex" (ngSubmit)="submit(loginForm)" #loginForm="ngForm" novalidate>

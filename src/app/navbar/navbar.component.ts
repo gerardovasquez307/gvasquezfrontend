@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   name: any;
   validated: boolean = false;
   userLoggedIn: string = "error";
+  displayLoginError : boolean = false;
 
   constructor(private initialRouter: Router,
     private nextRoute: ActivatedRoute, private userService : UserService
@@ -32,11 +33,13 @@ export class NavbarComponent implements OnInit {
 
     if(result.validated){
       console.log("validated");
+      this.displayLoginError = false;
       this.validated = result.validated;
       this.userLoggedIn = ngForm.value.Email;
     }
     else{
-      console.log("incorrect username/password")
+      console.log("incorrect username/password");
+      this.displayLoginError = true;
     }
   }
 
