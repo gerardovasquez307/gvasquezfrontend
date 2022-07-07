@@ -21,7 +21,7 @@ export class UserService {
     }
     else{
       return new Promise( (resolve, reject) =>{
-        this.http.post(this.url + "/validate",form.value).subscribe(data => {
+        this.http.post(this.url + "/login",form.value).subscribe(data => {
         resolve(data);
       });      
     });

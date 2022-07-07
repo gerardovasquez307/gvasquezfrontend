@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       }
 
       //need to change name, and gender to conform to api
-      let name : string = form.value.fName + form.value.lName;
+      let name : string = form.value.fName + " " + form.value.lName;
       let address : string  = form.value.Address + form.value.city + form.value.state + form.value.zip;
       
       //set fields we need to send to api
@@ -100,6 +100,7 @@ export class RegisterComponent implements OnInit {
       this.openModalButton.nativeElement.click();
       this.resetModal();
       this.containsErrors = false;
+      this.scrollToTop();
     }
     this.loading = false;
   }
