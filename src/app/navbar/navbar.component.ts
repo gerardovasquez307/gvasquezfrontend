@@ -37,7 +37,12 @@ export class NavbarComponent implements OnInit {
       this.userLoggedIn = result.msg;
       this.validated = true;
     }
+  }
 
+  logout(){
+    this.validated = false;
+    this.userLoggedIn = "error";
+    this.deleteToken();
   }
 
   async submit(ngForm : NgForm)
@@ -64,5 +69,9 @@ export class NavbarComponent implements OnInit {
 
   saveToken(token : string){
     localStorage.setItem("accessToken", token);
+  }
+
+  deleteToken(){
+    localStorage.removeItem("accessToken");
   }
 }
