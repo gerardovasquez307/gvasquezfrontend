@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ApplicationService } from '../services/application.service';
 
 @Component({
   selector: 'app-application',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicationComponent implements OnInit {
 
-  constructor() { }
+  loading: boolean = false;
+  
+  constructor(private applicationService: ApplicationService) { }
 
   ngOnInit(): void {
+
+  }
+
+  submit(form : NgForm){
+    this.applicationService.submit(form);
   }
 
 }
