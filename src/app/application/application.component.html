@@ -11,11 +11,9 @@
                     <div formArrayName="occupants" *ngFor="let occupant of getOccupants.controls; index as i">
                         <div [formGroupName]="i">
                         <tr>
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Name" formControlName="name"/>
-                            <label for="age">Age:</label>
-                            <input type="text" id="age" name="age" placeholder="Age" formControlName="age"/>
-                            <button type="button" class="btn btn-danger" (click)="removeOccupantField(i)">X</button>
+                        <td><input type="text" id="name" name="name" placeholder="Name" formControlName="name"/></td>
+                        <td><input type="text" id="age" name="age" placeholder="Age" formControlName="age"/></td>
+                        <button type="button" class="btn btn-danger" (click)="removeOccupantField(i)">X</button>
                         </tr>
                         </div>
                     </div>
@@ -28,13 +26,10 @@
                     <div formArrayName="landlordRefs" *ngFor="let landlordRef of getLandlordRefs.controls; index as i">
                         <div [formGroupName]="i">
                         <tr>
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Name" formControlName="name"/>
-                            <label for="phone">Phone:</label>
-                            <input type="tel" placeholder="XXX-XXX-XXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="phone" name="phone" placeholder="Phone" formControlName="phone"/>
-                            <label for="propertyAddr">Property Address:</label>
-                            <input type="text" id="propertyAddr" name="propertyAddr" placeholder="Property Address" formControlName="propertyAddr"/>
-                            <button type="button" class="btn btn-danger" (click)="removeLandlordField(i)">X</button>
+                        <td><input type="text" id="name" name="name" placeholder="Name" formControlName="name"/></td>
+                        <td><input type="tel" placeholder="XXX-XXX-XXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="phone" name="phone" placeholder="Phone" formControlName="phone"/></td>
+                        <td><input type="text" id="propertyAddr" name="propertyAddr" placeholder="Property Address" formControlName="propertyAddr"/></td>
+                        <button type="button" class="btn btn-danger" (click)="removeLandlordField(i)">X</button>
                         </tr>
                         </div>
                     </div>
@@ -43,18 +38,15 @@
             </div>
             <div *ngIf="item.id == 3">
                 <tr><th>Work History</th></tr>
-                <tr><td>Average Monthly income </td><input type="text" id="monthlyIncome" name="monthlyIncome"></tr>
+                <tr><td>Average Monthly income </td> <input type="text" id="monthlyIncome" placeholder="$" name="monthlyIncome"></tr>
                 <tr><td>Employer History</td></tr>
                 <form [formGroup]="employerForm">
                     <div formArrayName="employers" *ngFor="let employer of getEmployers.controls; index as i">
                         <div [formGroupName]="i">
                         <tr>
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Name" formControlName="name"/>
-                            <label for="phone">Phone:</label>
-                            <input type="tel" placeholder="XXX-XXX-XXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="phone" name="phone" placeholder="Phone" formControlName="phone"/>
-                            <label for="propertyAddr">Property Address:</label>
-                            <input type="text" id="propertyAddr" name="propertyAddr" placeholder="Property Address" formControlName="propertyAddr"/>
+                        <td><input type="text" id="name" name="name" placeholder="Name" formControlName="name"/></td>    
+                        <td><input type="tel" placeholder="XXX-XXX-XXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="phone" name="phone" placeholder="Phone" formControlName="phone"/></td>
+                        <td><input type="text" id="propertyAddr" name="propertyAddr" placeholder="Property Address" formControlName="propertyAddr"/></td>
                             <button type="button" class="btn btn-danger" (click)="removeEmployerField(i)">X</button>
                         </tr>
                         </div>
