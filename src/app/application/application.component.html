@@ -1,10 +1,83 @@
 <div class="container my-3">
+<form *ngIf="!submitted" id="appForm" (ngSubmit)="submit(appForm)" #appForm="ngForm">
     <h3>Submit your application</h3>
-
-    <form id="submitAppForm" (ngSubmit)="submit(submitAppForm)" #submitAppForm="ngForm">
-        <button type="submit" class="btn btn-primary">
-            <span [ngClass]="{'spinner-border spinner-border-sm' : loading}" role="status" aria-hidden="true"></span>
-            Submit Application
-        </button>
-    </form>
+    <!-- Main Form -->
+    <table class="table">
+        <tbody>
+          <tr *ngFor="let item of pagesObject | paginate: config">
+            <div *ngIf="item.id == 1">
+                <tr><th>Occupants</th></tr>
+                <form [formGroup]="occupantForm">
+                    <div formArrayName="occupants" *ngFor="let occupant of getOccupants.controls; index as i">
+                        <div [formGroupName]="i">
+                        <tr>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Name" formControlName="name"/>
+                            <label for="age">Age:</label>
+                            <input type="text" id="age" name="age" placeholder="Age" formControlName="age"/>
+                            <button type="button" class="btn btn-danger" (click)="removeOccupantField(i)">X</button>
+                        </tr>
+                        </div>
+                    </div>
+                </form>
+                    <button class="btn btn-add btn-success" type="button" (click)="addOccupantField()">Add</button>
+            </div>
+            <div *ngIf="item.id == 2">
+                <tr><th>Previous Landlord References</th></tr>
+                <form [formGroup]="landlordForm">
+                    <div formArrayName="landlordRefs" *ngFor="let landlordRef of getLandlordRefs.controls; index as i">
+                        <div [formGroupName]="i">
+                        <tr>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Name" formControlName="name"/>
+                            <label for="phone">Phone:</label>
+                            <input type="tel" placeholder="XXX-XXX-XXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="phone" name="phone" placeholder="Phone" formControlName="phone"/>
+                            <label for="propertyAddr">Property Address:</label>
+                            <input type="text" id="propertyAddr" name="propertyAddr" placeholder="Property Address" formControlName="propertyAddr"/>
+                            <button type="button" class="btn btn-danger" (click)="removeLandlordField(i)">X</button>
+                        </tr>
+                        </div>
+                    </div>
+                </form>
+                    <button class="btn btn-add btn-success" type="button" (click)="addLandlordField()">Add</button>
+            </div>
+            <div *ngIf="item.id == 3">
+                <tr><th>Work History</th></tr>
+                <tr><td>Average Monthly income </td><input type="text" id="monthlyIncome" name="monthlyIncome"></tr>
+                <tr><td>Employer History</td></tr>
+                <form [formGroup]="employerForm">
+                    <div formArrayName="employers" *ngFor="let employer of getEmployers.controls; index as i">
+                        <div [formGroupName]="i">
+                        <tr>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Name" formControlName="name"/>
+                            <label for="phone">Phone:</label>
+                            <input type="tel" placeholder="XXX-XXX-XXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="phone" name="phone" placeholder="Phone" formControlName="phone"/>
+                            <label for="propertyAddr">Property Address:</label>
+                            <input type="text" id="propertyAddr" name="propertyAddr" placeholder="Property Address" formControlName="propertyAddr"/>
+                            <button type="button" class="btn btn-danger" (click)="removeEmployerField(i)">X</button>
+                        </tr>
+                        </div>
+                    </div>
+                </form>
+                    <button class="btn btn-add btn-success" type="button" (click)="addEmployerField()">Add</button>
+            </div>
+            <div *ngIf="item.id == 4">
+                <tr><th>Income/ID Verification</th></tr>
+                <tr><td>W2 (Employers must be 1+ years)</td><input type="file"></tr>
+                <tr><td>Bank Statements(Must show consistent employer deposits)</td><input type="file"></tr>
+                <tr><td>Id Submission</td><input type="file"></tr>
+                <button type="submit" class="btn btn-primary">
+                    <span [ngClass]="{'spinner-border spinner-border-sm' : loading}" role="status" aria-hidden="true"></span>
+                    Submit Application
+                </button>
+            </div>
+        </tbody>
+    </table>  
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</form>
+<div *ngIf="submitted">
+    <h3>Thank you for submitting your application.</h3>
+    <h5>If Approved, or if we need more documents, we will reach out to you.</h5>
+</div>
 </div>
